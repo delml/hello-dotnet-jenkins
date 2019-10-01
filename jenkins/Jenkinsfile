@@ -12,6 +12,12 @@ pipeline {
       steps {
         sh 'dotnet test --logger:xunit'
       }
+
+      post {
+        always {
+          xunit(tools: [xUnitDotNet(pattern: '**/TestResults/*.xml')])
+        }
+      }
     }
 
     stage('Staging') {
@@ -21,9 +27,4 @@ pipeline {
     }
   }
 
-  post {
-    always {
-      xunit(tools: [xUnitDotNet(pattern: '**/TestResults/*.xml')])
-    }
-  }
 }
