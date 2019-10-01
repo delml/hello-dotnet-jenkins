@@ -13,6 +13,12 @@ pipeline {
         sh 'dotnet test --logger:xunit'
       }
     }
+
+    stage('Staging') {
+      steps {
+        echo 'Deploy to staging...'
+      }
+    }
   }
 
   post {
