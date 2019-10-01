@@ -22,7 +22,27 @@ pipeline {
 
     stage('Staging') {
       steps {
-        echo 'Deploy to staging...'
+        sh "sudo dotnet publish HelloMvc --configuration Debug --output /opt/HelloMvcStaging"
+      }
+    }
+
+    stage('Deploy') {
+      agent {
+        label 'master'
+      }
+
+      when {
+        beforeInput true
+        beforeAgent true
+        tag 'release-*'
+      }
+
+      input {
+        message "Deploy ${TAG_NAME} to production servers?"
+      }
+
+      steps {
+        sh "sudo dotnet publish HelloMvc --configuration Debug --output /opt/HelloMvcProduction"
       }
     }
   }
