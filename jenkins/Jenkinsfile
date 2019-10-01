@@ -38,7 +38,7 @@ pipeline {
       }
 
       input {
-        message "Deploy ${TAG_NAME} to production servers?"
+        message "Deploy ${env.TAG_NAME} to production servers?"
       }
 
       steps {
