@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Restore') {
+      steps {
+        sh 'dotnet restore'
+      }
+    }
+
+    stage('Unit Tests') {
+      steps {
+        sh 'dotnet test --logger:xunit'
+      }
+    }
+  }
+
+  post {
+    always {
+      xunit(tools: [xUnitDotNet(pattern: '**/TestResults/*.xml')])
+    }
+  }
+}
