@@ -1,25 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2011
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstUnitTests", "MyFirstUnitTests\MyFirstUnitTests.csproj", "{4ED15914-327A-464D-BD60-D75789B2AD75}"
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstUnitTests", "MyFirstUnitTests\MyFirstUnitTests.csproj", "{99BC588D-C2E4-4B27-80C2-9359BD68419B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4ED15914-327A-464D-BD60-D75789B2AD75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ED15914-327A-464D-BD60-D75789B2AD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ED15914-327A-464D-BD60-D75789B2AD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ED15914-327A-464D-BD60-D75789B2AD75}.Release|Any CPU.Build.0 = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F8604E35-6F02-4BE2-8FC1-36122EEFC842}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Debug|x64.Build.0 = Debug|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Debug|x86.Build.0 = Debug|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Release|x64.ActiveCfg = Release|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Release|x64.Build.0 = Release|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Release|x86.ActiveCfg = Release|Any CPU
+		{99BC588D-C2E4-4B27-80C2-9359BD68419B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
