@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    ASPNETCORE_TARGET_FRAMEWORK = 'netcoreapp3.0'
+  }
+
   stages {
     stage('Build') {
       steps {
@@ -29,8 +33,10 @@ pipeline {
       stages {
         stage('Publish Application') {
           steps {
+            sh "dotnet publish HelloMvc --configuration Debug"
+
             sh "sudo rm -fr /opt/${APP_NAME}"
-            sh "sudo dotnet publish HelloMvc --configuration Debug --output /opt/${APP_NAME}"
+            sh "sudo mv ./HelloMvc/bin/Debug/${ASPNETCORE_TARGET_FRAMEWORK}/publish /opt/${APP_NAME}"
           }
         }
 
@@ -72,13 +78,18 @@ pipeline {
       stages {
         stage('Publish Application') {
           steps {
+            sh "dotnet publish HelloMvc --configuration Release"
+
+            // TODO: pack and archive published app
+
             sh "sudo rm -fr /opt/${APP_NAME}"
-            sh "sudo dotnet publish HelloMvc --configuration Release --output /opt/${APP_NAME}"
+            sh "sudo mv ./HelloMvc/bin/Release/${ASPNETCORE_TARGET_FRAMEWORK}/publish /opt/${APP_NAME}"
           }
         }
 
         stage('Configure Service') {
           steps {
+            //TODO: extract config to external file(s)
             sh "echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
             sh "echo 'ASPNETCORE_ENVIRONMENT=Production' >>/etc/dotnet/${SERVICE_NAME}.conf"
 
