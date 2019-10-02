@@ -42,7 +42,7 @@ pipeline {
       }
 
       steps {
-        sh "sudo dotnet publish HelloMvc --configuration Debug --output /opt/HelloMvcProduction"
+        sh "sudo dotnet publish HelloMvc --configuration Release --output /opt/HelloMvcProduction"
       }
     }
   }
