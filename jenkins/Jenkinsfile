@@ -22,6 +22,7 @@ pipeline {
 
     stage('Staging') {
       steps {
+        sh "sudo rm -fr /opt/HelloMvcStaging"
         sh "sudo dotnet publish HelloMvc --configuration Debug --output /opt/HelloMvcStaging"
       }
     }
@@ -42,6 +43,7 @@ pipeline {
       }
 
       steps {
+        sh "sudo rm -fr /opt/HelloMvcProduction"
         sh "sudo dotnet publish HelloMvc --configuration Release --output /opt/HelloMvcProduction"
       }
     }
