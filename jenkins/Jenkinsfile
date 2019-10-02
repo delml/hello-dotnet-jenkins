@@ -42,8 +42,9 @@ pipeline {
 
         stage('Configure Service') {
           steps {
-            sh "echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
-            sh "echo 'ASPNETCORE_ENVIRONMENT=Staging' >>/etc/dotnet/${SERVICE_NAME}.conf"
+            sh "sudo mkdir -p /etc/dotnet/"
+            sh "sudo echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
+            sh "sudo echo 'ASPNETCORE_ENVIRONMENT=Staging' >>/etc/dotnet/${SERVICE_NAME}.conf"
 
             sh "sudo chkconfig --del ${SERVICE_NAME}"
             sh "sudo cp -f ./jenkins/scripts/dotnet_service /etc/init.d/${SERVICE_NAME}"
@@ -90,8 +91,9 @@ pipeline {
         stage('Configure Service') {
           steps {
             //TODO: extract config to external file(s)
-            sh "echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
-            sh "echo 'ASPNETCORE_ENVIRONMENT=Production' >>/etc/dotnet/${SERVICE_NAME}.conf"
+            sh "sudo mkdir -p /etc/dotnet/"
+            sh "sudo echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
+            sh "sudo echo 'ASPNETCORE_ENVIRONMENT=Production' >>/etc/dotnet/${SERVICE_NAME}.conf"
 
             sh "sudo chkconfig --del ${SERVICE_NAME}"
             sh "sudo cp -f ./jenkins/scripts/dotnet_service /etc/init.d/${SERVICE_NAME}"
