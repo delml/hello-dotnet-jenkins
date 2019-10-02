@@ -28,29 +28,14 @@ pipeline {
       environment {
         APP_NAME = 'HelloMvcStaging'
         SERVICE_NAME = 'hellomvc-staging'
+        APP_ENVIRONMENT = 'Staging'
       }
 
       stages {
-        stage('Publish Application') {
-          steps {
-            sh "dotnet publish HelloMvc --configuration Debug"
-
-            sh "sudo rm -fr /opt/${APP_NAME}"
-            sh "sudo mv ./HelloMvc/bin/Debug/${ASPNETCORE_TARGET_FRAMEWORK}/publish /opt/${APP_NAME}"
-          }
-        }
-
-        stage('Configure Service') {
-          steps {
-            sh "sudo mkdir -p /etc/dotnet/"
-            sh "sudo echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
-            sh "sudo echo 'ASPNETCORE_ENVIRONMENT=Staging' >>/etc/dotnet/${SERVICE_NAME}.conf"
-
-            sh "sudo chkconfig --del ${SERVICE_NAME}"
-            sh "sudo cp -f ./jenkins/scripts/dotnet_service /etc/init.d/${SERVICE_NAME}"
-            sh "sudo chmod +x /etc/init.d/${SERVICE_NAME}"
-            sh "sudo chkconfig --add ${SERVICE_NAME}"
-          }
+        steps {
+          sh './jenkins/scripts/publish-hellomvc.sh'
+          sh './jenkins/scripts/hellomvc-service-generate-config.sh'
+          sh './jenkins/scripts/hellomvc-service-configure.sh'
         }
       }
     }
@@ -73,34 +58,13 @@ pipeline {
       environment {
         APP_NAME = 'HelloMvcProduction'
         SERVICE_NAME = 'hellomvc-production'
+        APP_ENVIRONMENT = 'Production'
       }
 
-      // TODO: Duplicate code in stage 'Staging'. Should be extracted into a script.
-      stages {
-        stage('Publish Application') {
-          steps {
-            sh "dotnet publish HelloMvc --configuration Release"
-
-            // TODO: pack and archive published app
-
-            sh "sudo rm -fr /opt/${APP_NAME}"
-            sh "sudo mv ./HelloMvc/bin/Release/${ASPNETCORE_TARGET_FRAMEWORK}/publish /opt/${APP_NAME}"
-          }
-        }
-
-        stage('Configure Service') {
-          steps {
-            //TODO: extract config to external file(s)
-            sh "sudo mkdir -p /etc/dotnet/"
-            sh "sudo echo 'DOTNET_APP_DLL=/opt/${APP_NAME}/HelloMvc.dll' >/etc/dotnet/${SERVICE_NAME}.conf"
-            sh "sudo echo 'ASPNETCORE_ENVIRONMENT=Production' >>/etc/dotnet/${SERVICE_NAME}.conf"
-
-            sh "sudo chkconfig --del ${SERVICE_NAME}"
-            sh "sudo cp -f ./jenkins/scripts/dotnet_service /etc/init.d/${SERVICE_NAME}"
-            sh "sudo chmod +x /etc/init.d/${SERVICE_NAME}"
-            sh "sudo chkconfig --add ${SERVICE_NAME}"
-          }
-        }
+      steps {
+        sh './jenkins/scripts/publish-hellomvc.sh'
+        sh './jenkins/scripts/hellomvc-service-generate-config.sh'
+        sh './jenkins/scripts/hellomvc-service-configure.sh'
       }
     }
   }
