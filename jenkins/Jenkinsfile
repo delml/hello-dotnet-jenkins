@@ -31,12 +31,10 @@ pipeline {
         APP_ENVIRONMENT = 'Staging'
       }
 
-      stages {
-        steps {
-          sh './jenkins/scripts/publish-hellomvc.sh'
-          sh './jenkins/scripts/hellomvc-service-generate-config.sh'
-          sh './jenkins/scripts/hellomvc-service-configure.sh'
-        }
+      steps {
+        sh './jenkins/scripts/publish-hellomvc.sh'
+        sh './jenkins/scripts/hellomvc-service-generate-config.sh'
+        sh './jenkins/scripts/hellomvc-service-configure.sh'
       }
     }
 
