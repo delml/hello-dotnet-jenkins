@@ -2,8 +2,9 @@ pipeline {
   agent any
 
   environment {
-    HELLOMVC_APP_NAME = "HelloMvc"
-    HELLOMVC_DLL_NAME = "${HELLOMVC_APP_NAME}"
+    HELLOMVC_PROJECT_NAME = "HelloMvc"
+    HELLOMVC_APP_NAME = "${HELLOMVC_PROJECT_NAME}"
+    HELLOMVC_DLL_NAME = "${HELLOMVC_PROJECT_NAME}"
     HELLOMVC_IDENTIFIER = "hellomvc"
     HELLOMVC_PUBLISH_TO = "/var/www/${HELLOMVC_IDENTIFIER}"
   }
