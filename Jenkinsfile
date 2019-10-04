@@ -2,7 +2,10 @@ pipeline {
   agent any
 
   environment {
-    ASPNETCORE_TARGET_FRAMEWORK = 'netcoreapp3.0'
+    HELLOMVC_APP_NAME = "HelloMvc"
+    HELLOMVC_DLL_NAME = HELLOMVC_APP_NAME
+    HELLOMVC_IDENTIFIER = "hellomvc"
+    HELLOMVC_PUBLISH_TO = "/var/www/${HELLOMVC_IDENTIFIER}"
   }
 
   stages {
@@ -26,9 +29,10 @@ pipeline {
 
     stage('Staging') {
       environment {
-        HELLOMVC_APP_NAME = 'HelloMvcStaging'
-        HELLOMVC_SERVICE_NAME = 'hellomvc-staging'
-        HELLOMVC_APP_ENVIRONMENT = 'Staging'
+        HELLOMVC_APP_NAME = "${HELLOMVC_APP_NAME}Staging"
+        HELLOMVC_IDENTIFIER = "${HELLOMVC_IDENTIFIER}-staging"
+        HELLOMVC_PUBLISH_TO = "${HELLOMVC_PUBLISH_TO}-staging"
+        HELLOMVC_ENVIRONMENT = "Staging"
       }
 
       steps {
@@ -55,9 +59,7 @@ pipeline {
       }
 
       environment {
-        HELLOMVC_APP_NAME = 'HelloMvcProduction'
-        HELLOMVC_SERVICE_NAME = 'hellomvc-production'
-        HELLOMVC_APP_ENVIRONMENT = 'Production'
+        HELLOMVC_ENVIRONMENT = "Production"
       }
 
       steps {
