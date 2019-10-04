@@ -65,8 +65,7 @@ pipeline {
 
       steps {
         sh 'sh ./jenkins/scripts/publish-hellomvc.sh'
-        // sh 'sh ./jenkins/scripts/hellomvc-service-generate-config.sh'
-        // sh 'sh ./jenkins/scripts/hellomvc-service-configure.sh'
+        sh 'sh ./jenkins/scripts/hellomvc-service-configure.sh'
       }
     }
   }
