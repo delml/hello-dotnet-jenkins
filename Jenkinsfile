@@ -26,9 +26,9 @@ pipeline {
 
     stage('Staging') {
       environment {
-        APP_NAME = 'HelloMvcStaging'
-        SERVICE_NAME = 'hellomvc-staging'
-        APP_ENVIRONMENT = 'Staging'
+        HELLOMVC_APP_NAME = 'HelloMvcStaging'
+        HELLOMVC_SERVICE_NAME = 'hellomvc-staging'
+        HELLOMVC_APP_ENVIRONMENT = 'Staging'
       }
 
       steps {
@@ -55,9 +55,9 @@ pipeline {
       }
 
       environment {
-        APP_NAME = 'HelloMvcProduction'
-        SERVICE_NAME = 'hellomvc-production'
-        APP_ENVIRONMENT = 'Production'
+        HELLOMVC_APP_NAME = 'HelloMvcProduction'
+        HELLOMVC_SERVICE_NAME = 'hellomvc-production'
+        HELLOMVC_APP_ENVIRONMENT = 'Production'
       }
 
       steps {
