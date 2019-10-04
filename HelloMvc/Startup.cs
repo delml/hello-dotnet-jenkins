@@ -31,6 +31,13 @@ namespace HelloMvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+            string pathBase = Environment.GetEnvironmentVariable("ASPNETCORE_PATH_BASE");
+            if (pathBase != null)
+            {
+                logger.LogInformation("Using path base: " + pathBase);
+                app.UsePathBase(pathBase);
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -40,13 +47,6 @@ namespace HelloMvc
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
-
-            string pathBase = Environment.GetEnvironmentVariable("ASPNETCORE_PATH_BASE");
-            if (pathBase != null)
-            {
-                logger.LogInformation("Using path base: " + pathBase);
-                app.UsePathBase(pathBase);
             }
 
             app.UseHttpsRedirection();
