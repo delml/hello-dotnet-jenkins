@@ -7,6 +7,7 @@ pipeline {
     HELLOMVC_DLL_NAME = "${HELLOMVC_PROJECT_NAME}"
     HELLOMVC_IDENTIFIER = "hellomvc"
     HELLOMVC_PUBLISH_TO = "/var/www/${HELLOMVC_IDENTIFIER}"
+    HELLOMVC_PATH_BASE = "/hello"
   }
 
   stages {
@@ -33,6 +34,7 @@ pipeline {
         HELLOMVC_APP_NAME = "${HELLOMVC_APP_NAME}Staging"
         HELLOMVC_IDENTIFIER = "${HELLOMVC_IDENTIFIER}-staging"
         HELLOMVC_PUBLISH_TO = "${HELLOMVC_PUBLISH_TO}-staging"
+        HELLOMVC_PATH_BASE = "${HELLOMVC_PATH_BASE}/staging"
         HELLOMVC_ENVIRONMENT = "Staging"
       }
 

@@ -9,8 +9,9 @@ RestartSec=10
 KillSignal=SIGINT
 SyslogIdentifier={{HELLOMVC_IDENTIFIER}}
 User=ec2-user
-Environment=ASPNETCORE_ENVIRONMENT={{HELLOMVC_ENVIRONMENT}}
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+Environment=ASPNETCORE_ENVIRONMENT={{HELLOMVC_ENVIRONMENT}}
+Environment=ASPNETCORE_PATH_BASE={{HELLOMVC_PATH_BASE}}
 
 [Install]
 WantedBy=multi-user.target
