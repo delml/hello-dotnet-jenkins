@@ -38,9 +38,7 @@ pipeline {
 
       steps {
         sh 'sh ./jenkins/scripts/publish-hellomvc.sh'
-        // FIXME: init service with auto-restart. Probably better to use Supervisor (Python).
-        // sh 'sh ./jenkins/scripts/hellomvc-service-generate-config.sh'
-        // sh 'sh ./jenkins/scripts/hellomvc-service-configure.sh'
+        sh 'sh ./jenkins/scripts/hellomvc-service-configure.sh'
       }
     }
 
