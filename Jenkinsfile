@@ -87,6 +87,9 @@ pipeline {
         beforeInput true
         beforeAgent true
         tag 'release-*'
+
+        // Check build is successful so far
+        expression { currentBuild.result == null }
       }
 
       input {
