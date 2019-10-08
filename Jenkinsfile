@@ -18,13 +18,47 @@ pipeline {
     }
 
     stage('Unit Tests') {
-      steps {
-        sh 'dotnet test --logger:xunit'
+      stages {
+        stage('Passing Tests') {
+          environment {
+            TEST_RESULT_PATH = "TestResults/passing_tests.xml"
+          }
+
+          steps {
+            sh "dotnet test --logger:'xunit;LogFilePath=${TEST_RESULT_PATH}' --filter Fails!=True"
+          }
+        }
+
+        stage('Failing Tests') {
+          environment {
+            TEST_RESULT_PATH = 'TestResults/failing_tests.xml'
+          }
+
+          steps {
+            sh (
+              script: "dotnet test --logger:\"xunit;LogFilePath=${TEST_RESULT_PATH}\" --filter Fails=True",
+              returnStatus: true
+            )
+          }
+        }
       }
 
       post {
         always {
-          xunit(tools: [xUnitDotNet(pattern: '**/TestResults/*.xml')])
+          xunit(
+            tools: [xUnitDotNet(pattern: "**/TestResults/*.xml")],
+            thresholds: [
+              failed(unstableThreshold: '0')
+            ]
+          )
+        }
+
+        unsuccessful {
+          mail(
+            to: 'email6078@gmail.com',
+            subject: "UNSUCCESSFUL build ${env.BRANCH_NAME}${env.BUILD_DISPLAY_NAME}",
+            body: "Bad build is bad: ${env.BUILD_URL}",
+          )
         }
       }
     }

@@ -11,7 +11,8 @@ namespace MyFirstUnitTests
             Assert.Equal(4, Add(2, 2));
         }
 
-        [Fact(Skip = "There, fixed!")]
+        [Trait("Fails", "True")]
+        [Fact]
         public void FailingTest()
         {
             Assert.Equal(5, Add(3, 1));
