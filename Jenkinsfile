@@ -55,7 +55,7 @@ pipeline {
 
         unsuccessful {
           mail(
-            to: 'email6078@gmail.com',
+            to: 'derek@3dresourcing.com.au,email6078@gmail.com',
             subject: "UNSUCCESSFUL build ${env.BRANCH_NAME}${env.BUILD_DISPLAY_NAME}",
             body: "Bad build is bad: ${env.BUILD_URL}",
           )
