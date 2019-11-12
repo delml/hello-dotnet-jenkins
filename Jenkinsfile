@@ -75,6 +75,7 @@ pipeline {
       steps {
         sh 'sh ./jenkins/scripts/publish-hellomvc.sh'
         sh 'sh ./jenkins/scripts/hellomvc-service-configure.sh'
+        sh 'sh ./jenkins/scripts/nginx-configure.sh'
       }
     }
 
@@ -103,6 +104,7 @@ pipeline {
       steps {
         sh 'sh ./jenkins/scripts/publish-hellomvc.sh'
         sh 'sh ./jenkins/scripts/hellomvc-service-configure.sh'
+        sh 'sh ./jenkins/scripts/nginx-configure.sh'
       }
     }
   }
