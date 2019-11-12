@@ -9,7 +9,7 @@ unit_file=$HELLOMVC_IDENTIFIER.service
 . jenkins/scripts/lib/mo.bash
 
 echo 'Generating SystemD unit file...'
-mo --fail-not-set -- 'jenkins/config/hellomvc.service.mustache' > "$unit_file"
+mo --fail-not-set -- 'config/systemd/hellomvc.service.mustache' > "$unit_file"
 
 echo 'Registering service with systemctl...'
 sudo cp "$unit_file" "$systemd"
