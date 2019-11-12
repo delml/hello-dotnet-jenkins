@@ -9,4 +9,4 @@ case "$HELLOMVC_ENVIRONMENT" in
   *) publish_config=Release ;;
 esac
 
-dotnet publish $HELLOMVC_PROJECT_NAME --configuration $publish_config --output $HELLOMVC_PUBLISH_TO
+dotnet publish "src/$HELLOMVC_PROJECT_NAME" --configuration $publish_config --output "$HELLOMVC_PUBLISH_TO"
